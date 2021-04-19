@@ -1,0 +1,100 @@
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
+/* UTILITIES */
+.p-20 {
+    padding: 20px;
+}
+
+/* LAYOUT */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #eff0f3;
+}
+
+/* HEADER */
+
+.header {
+    color: #d9376e;
+}
+
+.header h1 {
+    font-family: 'Acme', sans-serif;
+    font-size: 40px;
+}
+
+.header h1 span {
+    color: #ff8e3c;
+}
+
+/* SEARCH */
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#d9376e;
+    color: #fffffe;
+    text-transform: uppercase;
+}
+
+.wrap-select {
+    position: relative;
+    margin-left: 10px;
+}
+
+.wrap-select select {
+    appearance: none;
+    width: 200px;
+    height: 35px;
+    font-size: 16px;
+    background: transparent;
+    border: 1px solid #fef6e4;
+    color: #fef6e4;
+}
+
+/* arrow */
+.wrap-select::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-25%);
+    right: 10px;
+    border: 5px solid transparent;
+    border-top: 5px solid #fef6e4;
+}
+
+/* ICONS */
+.icons {
+    flex-grow: 1;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px 10px;
+    background: #eff0f3;
+}
+
+.icons .icon {
+    flex-basis: calc(100% / 6 - 20px);
+    margin: 20px 10px;
+    text-align: center;
+    font-size:14px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    background: #ff8e3c;
+    box-shadow: 0px 15px 5px -10px rgba(0,0,0, 0.2);
+}
+
+.icons .icon i {
+    margin-bottom: 20px;
+    font-size: 38px;
+}
