@@ -119,14 +119,19 @@ const icons = [
 */
 // refs
 const container = document.querySelector('.icons')
-const iconColor = ['#d9376e', '#6ad933', '#376bd9']
+const colors = ['#d9376e', '#50a626', '#376bd9']
 
 // stampo cards in hmtl
-printCards(icons);
+// printCards(icons);
 
+// ottengo i possibili type
 const types = getTypes(icons);
-console.log(types);
+// console.log(types);
 
+const coloredIcons = colorIcons(colors, types, icons);
+console.log(coloredIcons);
+
+printCards(coloredIcons);
 
 
 
@@ -140,16 +145,19 @@ console.log(types);
  */
 function printCards(icons) {
     icons.forEach((element) => {
-        const {prefix, family, name} = element;
+        const {prefix, family, name, color} = element;
         let html = 
         `<div class="icon p-20">
-            <i class="${family} ${prefix}${name}" style="color: #333"></i>
+            <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
             <div class="title">${name}</div>
         </div>`
         container.innerHTML += html;
     })
 }
 
+/**
+ * GET TYPES OF ARRAY ICONS
+ */
 function getTypes(icons) {
     let types = [];
     icons.forEach((element) => {
@@ -159,3 +167,19 @@ function getTypes(icons) {
     })
     return types;
 }
+
+
+/**
+ * 
+ */
+function colorIcons(colors, types, icons) {
+    const coloredIcons = icons.map((element) => {
+        const index = types.indexOf(element.type)
+        return {
+            ...element,
+            color: `${colors[index]}`,
+        }
+    })
+    return coloredIcons;
+}
+    
