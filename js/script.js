@@ -119,10 +119,13 @@ const icons = [
 */
 // refs
 const container = document.querySelector('.icons')
+const iconColor = ['#d9376e', '#6ad933', '#376bd9']
 
 // stampo cards in hmtl
 printCards(icons);
 
+const types = getTypes(icons);
+console.log(types);
 
 
 
@@ -145,4 +148,14 @@ function printCards(icons) {
         </div>`
         container.innerHTML += html;
     })
+}
+
+function getTypes(icons) {
+    let types = [];
+    icons.forEach((element) => {
+        if (! types.includes(element.type)) {
+            types.push(element.type);
+        }
+    })
+    return types;
 }
