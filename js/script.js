@@ -109,17 +109,11 @@ const icons = [
     },
 ];
 
-/*
-{
-        name: 'cat',
-        prefix: 'fa-',
-        type: 'animal',
-        family: 'fas',
-    },
-*/
+
 // refs
 const container = document.querySelector('.icons')
 const colors = ['#d9376e', '#50a626', '#376bd9']
+const select = document.querySelector('#type');
 
 // stampo cards in hmtl
 // printCards(icons);
@@ -128,10 +122,21 @@ const colors = ['#d9376e', '#50a626', '#376bd9']
 const types = getTypes(icons);
 // console.log(types);
 
+// creo un nuovo array di oggetti con la proprietà color, associando colore a types
 const coloredIcons = colorIcons(colors, types, icons);
-console.log(coloredIcons);
+// console.log(coloredIcons);
 
+// stampo le card con le icone colorate
 printCards(coloredIcons);
+
+// popolo il select con i vari types
+getOptions(types);
+
+// stampo le icone secondo il type selezionato
+printSelectCards (select, coloredIcons);
+
+
+
 
 
 
@@ -140,16 +145,21 @@ printCards(coloredIcons);
  * FUNCTIONS
 ****************************************************** */
 
+
+
+
+
 /**
  * PRINT CARDS IN HTML
  */
 function printCards(icons) {
+    container.innerHTML = '';
     icons.forEach((element) => {
         const {prefix, family, name, color} = element;
-        let html = 
+        html = 
         `<div class="icon p-20">
-            <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-            <div class="title">${name}</div>
+        <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+        <div class="title">${name}</div>
         </div>`
         container.innerHTML += html;
     })
@@ -182,4 +192,45 @@ function colorIcons(colors, types, icons) {
     })
     return coloredIcons;
 }
+
+
+/**
+ * GET SELECT OPTIONS
+ */
+function getOptions(types) {
+    let html = '';
+    types.forEach((element) => {
+        html += `<option value="${element}">${element}</option>`
+        // console.log(html);
+    })
+    select.innerHTML += html;
+}
+
+/**
+ * FILTERED ICONS BY TYPE
+ */
+
+function getSelectedIcons(selected, icons) {
     
+    if (selected === 'all') {
+        return icons;
+    }
+    
+    const selectedIcons = icons.filter(element => {
+        return element.type === selected;
+    })
+    return selectedIcons;
+}
+
+/**
+ * PRINT CARDS FILTERED BY SELECT OPTIONS
+ */
+
+function printSelectCards (select, coloredIcons){
+    select.addEventListener('change', () => {
+        // console.log(select.value);
+        const selected = select.value;
+        const selectedIcons = getSelectedIcons(selected, coloredIcons)
+        printCards(selectedIcons);
+    })
+}
